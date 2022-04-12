@@ -81,7 +81,7 @@ function stampaPost(){
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button js-like-button" href="#" data-post id="${element.id}">
+                        <a class="like-button js-like-button" href="#" data-postid="${element.id}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
@@ -99,34 +99,17 @@ function stampaPost(){
 stampaPost()
 
 
+
+
 function addLike(){
-    
-    for(let i = 0; i < posts.length; i++){
-            let button = document.querySelector(".like-button");
-            
-            
-            button.addEventListener("click", blu())
-        
-        
-        function blu(){
-            button.classList.add("like-button--liked")
-        }
-    }
+    let button = document.querySelectorAll(".like-button");
+    button.forEach((element)=>{
+        element.addEventListener("click", function(){
+            element.classList.add("like-button--liked");
+        })
+    })
 }
-
 addLike()
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -165,4 +148,4 @@ addLike()
                     </div>
                 </div> 
             </div>            
-        </div> */
+    </div> */
