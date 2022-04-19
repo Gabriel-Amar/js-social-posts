@@ -98,19 +98,27 @@ function stampaPost(){
 }
 
 const userLikes = [];
+function setLike(check, postid){
+    const counter = document.getElementById(`like-counter-${postid}`);
+    let likeValue = parseInt(counter.innerText);
+    if(check){
+        userLikes.push(postid);
+        counter.innerText = likeValue - 1;
+    }else{
+        userLikes.push(postid);
+        counter.innerText = likeValue + 1;
+    }
+    
+
+}
 function attachEvent(){
     const likeButtons = document.querySelectorAll("[data-postid]");
-    console.log(likeButtons)
     likeButtons.forEach((button)=>{
         button.addEventListener("click", function(evento){
             evento.preventDefault();
-            this.classList.add("like-button--liked");
-            userLikes.push(this.dataset.postid);
-            //console.log(userLikes);
-            const counter = document.getElementById(`like-counter-${this.dataset.postid}`);
-            let likeValue = parseInt(counter.innerText);
-            //console.log(likeValue)
-            counter.innerText = likeValue + 1;
+            const check = this.classList.contains("like-button--liked");
+            this.classList.toggle("like-button--liked");
+            setLike(check,this.dataset.postid);
         });
     });
 };
