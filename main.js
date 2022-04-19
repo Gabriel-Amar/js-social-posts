@@ -70,7 +70,7 @@ function stampaPost(){
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${element.author.name}</div>
-                        <div class="post-meta__time">${element.created}</div>
+                        <div class="post-meta__time">${new Date(element.created).toLocaleDateString()}</div>
                     </div>                    
                 </div>
             </div>
