@@ -66,10 +66,10 @@ function stampaPost(){
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${element.media}" alt="${element.name}">                    
+                        <img class="profile-pic" src="${element.author.image}" alt="${element.author.name}">                    
                     </div>
                     <div class="post-meta__data">
-                        <div class="post-meta__author">${element.name}</div>
+                        <div class="post-meta__author">${element.author.name}</div>
                         <div class="post-meta__time">${element.created}</div>
                     </div>                    
                 </div>
@@ -96,26 +96,26 @@ function stampaPost(){
     })
     conatiner.innerHTML += div
 }
+
+const userLikes = [];
+function attachEvent(){
+    const likeButtons = document.querySelectorAll("[data-postid]");
+    console.log(likeButtons)
+    likeButtons.forEach((button)=>{
+        button.addEventListener("click", function(evento){
+            evento.preventDefault();
+            this.classList.add("like-button--liked");
+            userLikes.push(this.dataset.postid);
+            //console.log(userLikes);
+            const counter = document.getElementById(`like-counter-${this.dataset.postid}`);
+            let likeValue = parseInt(counter.innerText);
+            //console.log(likeValue)
+            counter.innerText = likeValue + 1;
+        });
+    });
+};
 stampaPost()
-
-
-
-
-function addLike(){
-    let button = document.querySelectorAll(".like-button");
-    button.forEach((element)=>{
-        element.addEventListener("click", function(){
-            element.classList.add("like-button--liked");
-        })
-    })
-}
-addLike()
-
-
-
-
-
-
+attachEvent()
 
 
 
